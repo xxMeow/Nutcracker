@@ -1,0 +1,14 @@
+# Visual Studio 解决方案和项目文件
+*.sln           text eol=crlf
+*.vcxproj       text eol=crlf
+*.vcxproj.filters text eol=crlf
+*.csproj        text eol=crlf
+*.vbproj        text eol=crlf
+*.fsproj        text eol=crlf
+
+# Windows 批处理文件（必须 CRLF）
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
+# 所有其他文本文件保持仓库 LF + 检出时按平台自动转换
+*               text=auto
