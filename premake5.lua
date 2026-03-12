@@ -1,0 +1,101 @@
+workspace "Nutcracker"
+    architecture "x64"
+    configurations
+    {
+        "Debug",
+        "Release",
+        "Dist"
+    }
+    outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+    filter { "system:windows", "toolset:msc*" } -- msc*可以匹配VisualStudio所使用的MSVC编译器
+        buildoptions
+        {
+            "/utf-8"
+        }
+    filter {}
+
+project "Nutcracker"
+    location "Nutcracker"
+    kind "SharedLib"
+    language "C++"
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+    includedirs
+    {
+        "Nutcracker/vendor/spdlog/include"
+    }
+
+    filter "system:windows"
+        cppdialect "C++17"
+        staticruntime "On"
+        systemversion "10.0"
+        defines
+        {
+            "NC_PLATFORM_WINDOWS",
+            "NC_BUILD_DLL"
+        }
+        postbuildcommands
+        {
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+        }
+
+    filter "configurations:Debug"
+        defines "NC_DEBUG"
+        symbols "On"
+
+    filter "configurations:Release"
+        defines "NC_RELEASE"
+        optimize "On"
+
+    filter "configurations:Dist"
+        defines "NC_DIST"
+        optimize "On"
+
+
+project "Sandbox"
+    location "Sandbox"
+    kind "ConsoleApp"
+    language "C++"
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+    includedirs
+    {
+        "Nutcracker/vendor/spdlog/include",
+        "Nutcracker/src"
+    }
+    links
+    {
+        "Nutcracker"
+    }
+
+    filter "system:windows"
+        cppdialect "C++17"
+        staticruntime "On"
+        systemversion "10.0"
+        defines
+        {
+            "NC_PLATFORM_WINDOWS"
+        }
+
+    filter "configurations:Debug"
+        defines "NC_DEBUG"
+        symbols "On"
+
+    filter "configurations:Release"
+        defines "NC_RELEASE"
+        optimize "On"
+
+    filter "configurations:Dist"
+        defines "NC_DIST"
+        optimize "On"
