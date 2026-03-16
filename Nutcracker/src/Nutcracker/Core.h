@@ -9,3 +9,5 @@
 #else
     #error Nutcracker only supports Windows!
 #endif // NC_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
