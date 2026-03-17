@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Nutcracker/Core.h"
+#include "ncpch.h"
 
-#include <string>
-#include <functional>
+#include "Nutcracker/Core.h"
 
 namespace Nutcracker {
 

@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Nutcracker {
 
     class NUTCRACKER_API MouseMovedEvent : public Event
