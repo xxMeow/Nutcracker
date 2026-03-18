@@ -9,11 +9,22 @@ workspace "Nutcracker"
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
     filter { "system:windows", "toolset:msc*" } -- msc*可以匹配VisualStudio所使用的MSVC编译器
-        buildoptions
-        {
-            "/utf-8"
-        }
-    filter {}
+    buildoptions
+    {
+        "/utf-8" -- 启用utf-8编码，兼容中文注释
+    }
+    filter {} -- 重置filter
+
+    -- Include directories releative to root folder (solution directory)
+    IncludeDir = {}
+    IncludeDir["GLFW"] = "Nutcracker/vendor/GLFW/include"
+    include "Nutcracker/vendor/GLFW"
+    filter {} -- 重置GLFW的premake文件遗留的filter
+
+
+project "GLFW"
+    staticruntime "On" -- Cherno的GLFW仓库中, 此项在后来的更新中被设置为了Off, 与本项目不匹配, 需要改回来
+
 
 project "Nutcracker"
     location "Nutcracker"
@@ -31,7 +42,13 @@ project "Nutcracker"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"

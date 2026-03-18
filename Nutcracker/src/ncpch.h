@@ -12,6 +12,8 @@
 #include <unordered_set>
 #include <unordered_map>
 
+#include "Nutcracker/Log.h"
+
 #ifdef NC_PLATFORM_WINDOWS
     #include <Windows.h>
 #endif
