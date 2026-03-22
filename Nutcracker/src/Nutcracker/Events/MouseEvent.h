@@ -38,7 +38,7 @@ namespace Nutcracker {
         {
             std::stringstream ss;
             ss << "MouseScrolledEvent: " << m_OffsetX << ", " << m_OffsetY;
-            return ss;
+            return ss.str();
         }
 
         EVENT_CLASS_TYPE(MouseScrolled)
@@ -63,6 +63,7 @@ namespace Nutcracker {
 
     class NUTCRACKER_API MouseButtonPressedEvent : public MouseButtonEvent
     {
+    public:
         MouseButtonPressedEvent(int button) : MouseButtonEvent(button) {}
 
         std::string ToString() const override

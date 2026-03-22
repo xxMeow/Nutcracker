@@ -60,10 +60,6 @@ project "Nutcracker"
             "NC_PLATFORM_WINDOWS",
             "NC_BUILD_DLL"
         }
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-        }
 
     filter "configurations:Debug"
         defines "NC_DEBUG"
@@ -106,6 +102,12 @@ project "Sandbox"
         defines
         {
             "NC_PLATFORM_WINDOWS"
+        }
+        postbuildcommands
+        {
+            -- bug：原教程中在Nutcracker的postbuild节点复制dll，此时Sandbox目录尚未被创建，无法复制
+            -- bugfix: Sandbox只是运行时依赖Nutcracker，可以在postbuild阶段自己收集所需dll，此时目录一定存在
+            ("{COPY} ../bin/" .. outputdir .. "/Nutcracker/Nutcracker.dll ../bin/" .. outputdir .. "/Sandbox")
         }
 
     filter "configurations:Debug"
