@@ -149,8 +149,8 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
-[Bb]in-int/
+/[Bb]in/
+/[Bb]in-int/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
@@ -507,3 +507,8 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,visualstudio,visualstudiocode,windows
+
+# Unignore specific tool directories
+!vendor/
+!vendor/**/
+!vendor/**/*
