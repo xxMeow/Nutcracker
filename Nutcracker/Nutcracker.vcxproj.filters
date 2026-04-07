@@ -37,6 +37,12 @@
     <ClInclude Include="src\Nutcracker\Events\MouseEvent.h">
       <Filter>Nutcracker\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nutcracker\Layer.h">
+      <Filter>Nutcracker</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nutcracker\LayerStack.h">
+      <Filter>Nutcracker</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nutcracker\Log.h">
       <Filter>Nutcracker</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nutcracker\Application.cpp">
+      <Filter>Nutcracker</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nutcracker\Layer.cpp">
+      <Filter>Nutcracker</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nutcracker\LayerStack.cpp">
       <Filter>Nutcracker</Filter>
     </ClCompile>
     <ClCompile Include="src\Nutcracker\Log.cpp">

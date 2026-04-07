@@ -3,6 +3,7 @@
 // For use by Nutcracker applications
 
 #include "Nutcracker/Application.h"
+#include "Nutcracker/Layer.h"
 #include "Nutcracker/Log.h"
 
 
